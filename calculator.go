@@ -6,7 +6,12 @@ func Add(a, b float64) float64 {
 	return a + b
 }
 
-// Subtract takes two numbers a & b, and returns the result of subtracting b from a
+// func Subtract takes two numbers a & b, and returns the result of subtracting b from a
 func Subtract(a, b float64) float64 {
 	return a - b
+}
+
+// func Multiply takes two numbers and returns the product of the result
+func Multiply(a, b float64) float64 {
+	return a * b
 }
