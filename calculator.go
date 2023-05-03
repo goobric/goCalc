@@ -17,3 +17,6 @@ func Multiply(a, b float64) float64 {
 }
 
 // func Divide takes two numbers and returns the quotient of the result
+func Divide(a, b float64) float64 {
+	return a / b
+}
