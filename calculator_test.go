@@ -5,12 +5,32 @@ import (
 	"testing"
 )
 
+/*
+	 func TestAdd(t *testing.T) {
+		t.Parallel()
+		var want float64 = 4
+		got := calculator.Add(2, 2)
+		if want != got {
+			t.Errorf("want %f, got %f", want, got)
+		}
+	}
+*/
 func TestAdd(t *testing.T) {
 	t.Parallel()
-	var want float64 = 4
-	got := calculator.Add(2, 2)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+	type testCase struct {
+		a, b float64
+		want float64
+	}
+	testCases := []testCase{
+		{a: 2, b: 2, want: 4},
+		{a: 1, b: 2, want: 3},
+		{a: 5, b: 1, want: 6},
+	}
+	for _, tc := range testCases {
+		got := calculator.Add(tc.a, tc.b)
+		it tc.want != got {
+			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		}
 	}
 }
 
@@ -30,4 +50,8 @@ func TestMultiply(t *testing.T) {
 	if want != got {
 		t.Errorf("want %f, got %f", want, got)
 	}
+}
+
+func TestDivide(t *testing.T) {
+	t.Parallel()
 }

@@ -15,3 +15,5 @@ func Subtract(a, b float64) float64 {
 func Multiply(a, b float64) float64 {
 	return a * b
 }
+
+// func Divide takes two numbers and returns the quotient of the result
