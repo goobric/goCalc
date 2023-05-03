@@ -95,12 +95,12 @@ func TestDivide(t *testing.T) {
 		want float64
 	}
 	testCases := []testCase{
-		{a: 2, b: 2, want: 4},
-		{a: 1, b: 2, want: 3},
-		{a: 5, b: 1, want: 6},
+		{a: 2, b: 2, want: 1},
+		{a: 1, b: -2, want: -0.5},
+		{a: 12, b: 3, want: 4},
 	}
 	for _, tc := range testCases {
-		got := calculator.Divide(tc.a, tc.b)
+		got, err := calculator.Divide(tc.a, tc.b)
 		it tc.want != got {
 			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
