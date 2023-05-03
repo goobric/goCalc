@@ -28,20 +28,22 @@ func TestAdd(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		got := calculator.Add(tc.a, tc.b)
-		it tc.want != got {
+		if tc.want != got {
 			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
 }
 
-/* func TestSubtract(t *testing.T) {
-	t.Parallel()
-	var want float64 = 2
-	got := calculator.Subtract(4, 2)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+/*
+	 func TestSubtract(t *testing.T) {
+		t.Parallel()
+		var want float64 = 2
+		got := calculator.Subtract(4, 2)
+		if want != got {
+			t.Errorf("want %f, got %f", want, got)
+		}
 	}
-} */
+*/
 func TestSubtract(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
@@ -55,20 +57,22 @@ func TestSubtract(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		got := calculator.Subtract(tc.a, tc.b)
-		it tc.want != got {
+		if tc.want != got {
 			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
 }
 
-/* func TestMultiply(t *testing.T) {
-	t.Parallel()
-	var want float64 = 6
-	got := calculator.Multiply(2, 3)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+/*
+	 func TestMultiply(t *testing.T) {
+		t.Parallel()
+		var want float64 = 6
+		got := calculator.Multiply(2, 3)
+		if want != got {
+			t.Errorf("want %f, got %f", want, got)
+		}
 	}
-} */
+*/
 func TestMultiply(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
@@ -82,7 +86,7 @@ func TestMultiply(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		got := calculator.Multiply(tc.a, tc.b)
-		it tc.want != got {
+		if tc.want != got {
 			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
@@ -101,12 +105,11 @@ func TestDivide(t *testing.T) {
 	}
 	for _, tc := range testCases {
 		got, err := calculator.Divide(tc.a, tc.b)
-		it tc.want != got {
+		if err != nil {
+			t.Fatalf("failed, want no error for valid input, got %v", err)
+		}
+		if tc.want != got {
 			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
-}
-
-func TestDivide(t *testing.T) {
-	t.Parallel()
 }
