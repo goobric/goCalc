@@ -34,12 +34,30 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestSubtract(t *testing.T) {
+/* func TestSubtract(t *testing.T) {
 	t.Parallel()
 	var want float64 = 2
 	got := calculator.Subtract(4, 2)
 	if want != got {
 		t.Errorf("want %f, got %f", want, got)
+	}
+} */
+func TestSubtract(t *testing.T) {
+	t.Parallel()
+	type testCase struct {
+		a, b float64
+		want float64
+	}
+	testCases := []testCase{
+		{a: 5, b: 2, want: 3},
+		{a: 1, b: 3, want: -2},
+		{a: 5, b: 11, want: -6},
+	}
+	for _, tc := range testCases {
+		got := calculator.Add(tc.a, tc.b)
+		it tc.want != got {
+			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		}
 	}
 }
 
