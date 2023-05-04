@@ -154,3 +154,11 @@ func closeEnough(a, b, tolerance float64) bool {
 	return math.Abs(a-b) <= tolerance
 
 }
+
+func TestAveMean(t *testing.T) {
+	t.Parallel()
+	_, err := calculator.AveMean(num)
+	if err != nil {
+		t.Error("Average Mean failed : want error for valid input, got nil")
+	}
+}
