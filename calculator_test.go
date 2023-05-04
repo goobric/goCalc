@@ -1,6 +1,7 @@
 package calculator_test
 
 import (
+	"math"
 	calculator "myGoCalc"
 	"testing"
 )
@@ -58,7 +59,7 @@ func TestSubtract(t *testing.T) {
 	for _, tc := range testCases {
 		got := calculator.Subtract(tc.a, tc.b)
 		if tc.want != got {
-			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+			t.Errorf("Subtract(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
 }
@@ -87,9 +88,14 @@ func TestMultiply(t *testing.T) {
 	for _, tc := range testCases {
 		got := calculator.Multiply(tc.a, tc.b)
 		if tc.want != got {
-			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+			t.Errorf("Multiply(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
+}
+
+func closeEnough(a, b, tolerance float64) bool {
+	return math.Abs(a-b) <= tolerance
+
 }
 
 func TestDivide(t *testing.T) {
@@ -102,14 +108,18 @@ func TestDivide(t *testing.T) {
 		{a: 2, b: 2, want: 1},
 		{a: 1, b: -2, want: -0.5},
 		{a: 12, b: 3, want: 4},
+		{a: 1, b: 3, want: 0.33333},
 	}
 	for _, tc := range testCases {
 		got, err := calculator.Divide(tc.a, tc.b)
 		if err != nil {
 			t.Fatalf("failed, want no error for valid input, got %v", err)
 		}
-		if tc.want != got {
-			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		// if tc.want != got {
+		// 	t.Errorf("Divide(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		// }
+		if !closeEnough(tc.want, got, 0.001) {
+			t.Errorf("Divide(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
 }
