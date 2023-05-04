@@ -93,11 +93,6 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
-func closeEnough(a, b, tolerance float64) bool {
-	return math.Abs(a-b) <= tolerance
-
-}
-
 func TestDivide(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
@@ -124,7 +119,7 @@ func TestDivide(t *testing.T) {
 	}
 }
 
-func TestSq(t *testing.T) {
+func TestSqrt(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
 		input float64
@@ -145,4 +140,17 @@ func TestSq(t *testing.T) {
 			t.Errorf("Sqrt failed(%f): want %f, got %f", tc.input, tc.want, got)
 		}
 	}
+}
+
+func TestSqrtInvalid(t *testing.T) {
+	t.Parallel()
+	_, err := calculator.Sqrt(-1)
+	if err != nil {
+		t.Error("Sqrt failed (-1): want error for valid input, got nil")
+	}
+}
+
+func closeEnough(a, b, tolerance float64) bool {
+	return math.Abs(a-b) <= tolerance
+
 }
