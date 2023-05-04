@@ -123,3 +123,26 @@ func TestDivide(t *testing.T) {
 		}
 	}
 }
+
+func TestSq(t *testing.T) {
+	t.Parallel()
+	type testCase struct {
+		input float64
+		want  float64
+	}
+	testCases := []testCase{
+		{input: 4, want: 2},
+		{input: 2, want: 1.41421356237},
+		{input: 25, want: 5},
+		{input: 1.4, want: 1.2},
+	}
+	for _, tc := range testCases {
+		got, err := calculator.Sqrt(tc.input)
+		if err != nil {
+			t.Fatalf("Sqrt failed(%f): want no error for valid input, got %v", tc.input, err)
+		}
+		if !closeEnough(tc.want, got, 0.1) {
+			t.Errorf("Sqrt failed(%f): want %f, got %f", tc.input, tc.want, got)
+		}
+	}
+}
